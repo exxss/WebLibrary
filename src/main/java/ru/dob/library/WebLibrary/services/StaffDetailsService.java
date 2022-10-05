@@ -5,23 +5,28 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import ru.dob.library.WebLibrary.models.Staff;
+import ru.dob.library.WebLibrary.repositories.PeopleRepository;
+import ru.dob.library.WebLibrary.security.StaffDetails;
+
+import java.util.Optional;
 
 @Service
-public class PersonDetailsService implements UserDetailsService {
+public class StaffDetailsService implements UserDetailsService {
     private final PeopleRepository peopleRepository;
 
     @Autowired
-    public PersonDetailsService(PeopleRepository peopleRepository) {
+    public StaffDetailsService(PeopleRepository peopleRepository) {
         this.peopleRepository = peopleRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Optional<Person> person = peopleRepository.findByUsername(s);
+        Optional<Staff> staff = peopleRepository.findByUsername(s);
 
-        if (person.isEmpty())
+        if (staff.isEmpty())
             throw new UsernameNotFoundException("User not found");
 
-        return new PersonDetails(person.get());
+        return new StaffDetails(staff.get());
     }
 }

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.dob.library.WebLibrary.models.Staff;
+import ru.dob.library.WebLibrary.repositories.PeopleRepository;
 
 @Service
 public class RegistrationService {
@@ -18,9 +20,9 @@ public class RegistrationService {
     }
 
     @Transactional
-    public void register(Person person) {
-        person.setPassword(passwordEncoder.encode(person.getPassword()));
-        person.setRole("ROLE_USER");
-        peopleRepository.save(person);
+    public void register(Staff staff) {
+        staff.setPassword(passwordEncoder.encode(staff.getPassword()));
+        staff.setRole("ROLE_USER");
+        peopleRepository.save(staff);
     }
 }
