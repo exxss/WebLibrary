@@ -2,13 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Библиотека "Берёзка"</title>
 </head>
+
 <body>
-Hello world!
+
+<hr/>
+<p th:text="${'Добро пожаловать ' + fullName}">VALUE</p>
+<a href="/people">Читатели</a>
+<a href="/books">Книги</a>
+<hr/>
 <form th:action="@{/logout}" th:method="POST">
     <input type="submit" value="Logout" />
 </form>
-
+</div>
 </body>
 </html>

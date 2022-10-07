@@ -24,6 +24,9 @@ public class Staff {
     @Column(name = "role")
     private String role;
 
+    @Column(name= "full_name")
+    private String fullName;
+
     public Staff() {
     }
     public Staff(String username) {
@@ -60,5 +63,13 @@ public class Staff {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

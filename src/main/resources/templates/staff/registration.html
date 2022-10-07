@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Добавление сотрудника</title>
 </head>
 <body>
 <body>
 
-<form th:method="POST" th:action="@{/auth/registration}" th:object="${staff}">
+<form th:method="POST" th:action="@{/staff/registration}" th:object="${staff}">
     <label for="username">Введите имя пользователя: </label>
     <input type="text" th:field="*{username}" id="username"/>
     <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</div>
@@ -16,7 +16,11 @@
     <input type="password" th:field="*{password}" id="password"/>
     <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
     <br/>
-    <input type="submit" value="Sign up!"/>
+    <label for="fullName">Введите ФИО: </label>
+    <input type="text" th:field="*{fullName}" id="fullName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">FullName Error</div>
+    <br/>
+    <input type="submit" value="Добавить!"/>
 </form>
 
 </body>

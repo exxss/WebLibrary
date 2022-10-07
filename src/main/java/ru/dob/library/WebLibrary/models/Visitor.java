@@ -4,11 +4,12 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 
 @Entity
 @Table(name = "person")
-public class Person {
+public class Visitor {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +24,14 @@ public class Person {
     @Column(name = "year_of_birth")
     private int yearOfBirth;
 
-    public Person() {
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    public Visitor() {
 
     }
 
-    public Person(int id, String fullName, int yearOfBirth) {
-        this.id = id;
+    public Visitor(String fullName, int yearOfBirth) {
         this.fullName = fullName;
         this.yearOfBirth = yearOfBirth;
     }
@@ -55,5 +58,13 @@ public class Person {
 
     public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

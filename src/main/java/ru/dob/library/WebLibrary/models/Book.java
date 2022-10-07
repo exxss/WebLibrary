@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name = "book")
@@ -22,14 +23,31 @@ public class Book {
     @Column(name = "year")
     private int year;
 
-    @Min(value = 0, message = "Id should be greater than 0")
-    @Column(name = "person_id")
-    private int personId;
+    @ManyToOne
+    @JoinColumn(name = "person_id",referencedColumnName = "id")
+    private Visitor owner;
 
     @NotEmpty(message = "Имя автора не может быть пустое")
     @Size(min = 2, max = 30, message = "Имя автора должно быть от 2 до 30 символов")
     @Column(name = "author")
     private String author;
+
+    @Column(name = "taken_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date takenAt;
+
+    @Transient
+    private boolean expired;
+
+    public Book(){
+
+    }
+
+    public Book(String name, int year,String author) {
+        this.name = name;
+        this.year = year;
+        this.author = author;
+    }
 
     public String getName() {
         return name;
@@ -59,11 +77,32 @@ public class Book {
         return id;
     }
 
-    public int getPersonId() {
-        return personId;
-    }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Visitor getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Visitor owner) {
+        this.owner = owner;
+    }
+
+    public Date getTakenAt() {
+        return takenAt;
+    }
+
+    public void setTakenAt(Date takenAt) {
+        this.takenAt = takenAt;
+    }
+
+    public boolean isExpired() {
+        return expired;
+    }
+
+    public void setExpired(boolean expired) {
+        this.expired = expired;
     }
 }
