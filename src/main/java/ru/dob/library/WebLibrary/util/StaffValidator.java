@@ -28,6 +28,7 @@ public class StaffValidator implements Validator {
 
         try {
             staffDetailsService.loadUserByUsername(staff.getUsername());
+            staffDetailsService.loadUserByFullName(staff.getFullName());
         } catch (UsernameNotFoundException ignored) {
             return; // все ок, пользователь не найден
         }

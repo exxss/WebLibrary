@@ -2,19 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Информация обо всех книгах</title>
+    <title>Книги</title>
 </head>
 <body>
 
 <div th:each="book : ${books}">
     <a th:href="@{/books/{id}(id=${book.getId()})}"
-       th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}">user</a>
+       th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}">book</a>
 </div>
 
 <br/>
 <hr/>
 
 <a href="/books/new">Добавить книгу</a>
-
+<a href="/books/search">Поиск книги</a>
+<a href="/hello">Домашняя страница</a>
 </body>
 </html>

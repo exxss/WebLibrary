@@ -56,8 +56,8 @@ public class VisitorsService {
         if(visitor.isPresent()) {
             Hibernate.initialize(visitor.get().getBooks());
             visitor.get().getBooks().forEach(book -> {
-                long diffInMillies = Math.abs(book.getTakenAt().getTime() - new Date().getTime());
-                if (diffInMillies > 864000000)
+                long diffInMillis = Math.abs(book.getTakenAt().getTime() - new Date().getTime());
+                if (diffInMillis > 864000000)
                     book.setExpired(true);
             });
             return visitor.get().getBooks();

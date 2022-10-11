@@ -2,19 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Информация о посетителях</title>
+    <title>Посетители</title>
 </head>
 <body>
 
 <div th:each="visitor : ${visitors}">
     <a th:href="@{/people/{id}(id=${visitor.getId()})}"
-       th:text="${visitor.getFullName() + ', ' + visitor.getYearOfBirth()}">user</a>
+       th:text="${visitor.getFullName() + ', ' + visitor.getYearOfBirth()+ ', ' + visitor.getNumber()}">user</a>
 </div>
 
 <br/>
 <hr/>
 
-<a href="/people/new">Добавить человека</a>
-
+<a href="/people/new">Добавить посетителя</a>
+<a href="/hello">Домашняя страница</a>
 </body>
 </html>

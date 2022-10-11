@@ -29,4 +29,11 @@ public class StaffDetailsService implements UserDetailsService {
 
         return new StaffDetails(staff.get());
     }
+    public UserDetails loadUserByFullName(String s) throws UsernameNotFoundException{
+        Optional<Staff> staff = staffRepository.findByFullName(s);
+        if (staff.isEmpty())
+            throw new UsernameNotFoundException("User not found");
+
+        return new StaffDetails(staff.get());
+    }
 }

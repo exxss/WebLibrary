@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.dob.library.WebLibrary.models.Staff;
+import ru.dob.library.WebLibrary.models.Visitor;
 import ru.dob.library.WebLibrary.services.AdminService;
 import ru.dob.library.WebLibrary.services.RegistrationService;
 import ru.dob.library.WebLibrary.util.StaffValidator;
@@ -74,5 +75,10 @@ public class StaffController {
     public String delete(@PathVariable("id") int id) {
         adminService.delete(id);
         return "redirect:/staff";
+    }
+    @PatchMapping("/{id}/assign")
+    public @ResponseBody String assign(@PathVariable("id") int id,@ModelAttribute("staff") String selectedRole){
+        adminService.assign(id, selectedRole);
+        return "redirect:/staff/" + id;
     }
 }

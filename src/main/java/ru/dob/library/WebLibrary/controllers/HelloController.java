@@ -1,6 +1,5 @@
 package ru.dob.library.WebLibrary.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -8,10 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.dob.library.WebLibrary.security.StaffDetails;
 import ru.dob.library.WebLibrary.services.AdminService;
-import ru.dob.library.WebLibrary.services.BooksService;
 
-import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 
 @Controller
 public class HelloController {
@@ -27,11 +23,10 @@ public class HelloController {
 //        return "hello";
 //    }
     @GetMapping("/hello")
-    public String hello(String fullName,Model model){
+    public String hello(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
        StaffDetails staffDetails = (StaffDetails) authentication.getPrincipal();
-       fullName = staffDetails.getStaff().getFullName();
-       model.addAttribute("fullName",fullName);
+       model.addAttribute("fullName",staffDetails.getStaff().getFullName());
        return "hello";
     }
 }

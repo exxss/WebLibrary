@@ -15,11 +15,20 @@
     <input type="text" th:field="*{fullName}" id="fullName"/>
     <div style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Некорректное ФИО</div>
     <br/>
-    <label for="role">Выберите роль </label>
-    <input type="text" th:field="*{role}" id="role"/>
-    <div style="color:red" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>
+    <label for="password">Введите пароль: </label>
+    <input type="password" th:field="*{password}" id="password"/>
+    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Некорректный пароль</div>
     <br/>
-    <input type="submit" value="Редактировать!"/>
+    <select name="role">
+        <option
+                th:each="role : ${T(ru.dob.library.WebLibrary.models.Role).values()}"
+                th:text="${role.displayText}"
+                th:value="${role.name()}">
+        </option>
+    </select>
+    <br/>
+    <input type="submit" value="Сохранить">
 </form>
+<a href="/hello">Домашняя страница</a>
 </body>
 </html>

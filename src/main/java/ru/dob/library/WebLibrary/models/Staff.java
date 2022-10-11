@@ -24,6 +24,8 @@ public class Staff {
     @Column(name = "role")
     private String role;
 
+    @NotEmpty(message = "Имя не должно быть пустым")
+    @Size(min = 2, max = 30, message = "Размер имени должен быть от 2 до 30 символов")
     @Column(name= "full_name")
     private String fullName;
 

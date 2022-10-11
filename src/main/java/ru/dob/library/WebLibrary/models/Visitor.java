@@ -3,6 +3,7 @@ package ru.dob.library.WebLibrary.models;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -15,14 +16,18 @@ public class Visitor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
+    @NotEmpty(message = "Имя не должно быть пустым")
+    @Size(min = 2, max = 30, message = "Размер имени должен быть от 2 до 30 символов")
     @Column(name = "full_name")
     private String fullName;
 
-    @Min(value = 1920, message = "Year of birth should be greater than 1920")
+    @Min(value = 1920, message = "Дата рождения не может быть меньше 1920 года")
     @Column(name = "year_of_birth")
     private int yearOfBirth;
+
+    @Column(name = "number")
+    @Pattern(regexp="(^$|[0-9]{11})",message = "Введите номер в формате: \"7 ххх ххх хх хх\"")
+    private String number;
 
     @OneToMany(mappedBy = "owner")
     private List<Book> books;
@@ -66,5 +71,13 @@ public class Visitor {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }

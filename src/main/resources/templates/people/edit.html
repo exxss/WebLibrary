@@ -15,8 +15,12 @@
     <input type="text" th:field="*{yearOfBirth}" id="yearOfBirth"/>
     <div style="color:red" th:if="${#fields.hasErrors('yearOfBirth')}" th:errors="*{yearOfBirth}">Год рождения введён не верно</div>
     <br/>
+    <label for="number">Введите номер: </label>
+    <input type="text" th:field="*{number}" id="number"/>
+    <div style="color:red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Номер телефона введён не верно</div>
+    <br/>
     <input type="submit" value="Редактировать!"/>
 </form>
-
+<a href="/hello">Домашняя страница</a>
 </body>
 </html>

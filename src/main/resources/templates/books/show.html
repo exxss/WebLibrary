@@ -16,7 +16,7 @@
 </div>
 <div th:if="${visitors}">
     <span>Книга сейчас свободна.Кому выдать?</span>
-    <form th:method="PATCH" th:action="@{/books/{id}/release(id=${books.getId()})}">
+    <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${books.getId()})}">
         <label for="visitor">Выберите человека</label>
         <select th:object="${visitor}" th:field="*{id}" id="visitor">
             <option th:each="visitor : ${visitors}" th:value="${visitor.getId()}" th:text="${visitor.getFullName()}">visitor name</option>
@@ -32,5 +32,6 @@
     <input type="submit" value="Удалить">
 </form>
 </form>
+<a href="/hello">Домашняя страница</a>
 </body>
 </html>

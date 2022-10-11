@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Библиотека "Берёзка"</title>
@@ -9,8 +9,11 @@
 
 <hr/>
 <p th:text="${'Добро пожаловать ' + fullName}">VALUE</p>
-<a href="/people">Читатели</a>
+<a href="/people">Посетители</a>
 <a href="/books">Книги</a>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <a href="/staff">Сотрудники</a>
+</div>
 <hr/>
 <form th:action="@{/logout}" th:method="POST">
     <input type="submit" value="Logout" />
