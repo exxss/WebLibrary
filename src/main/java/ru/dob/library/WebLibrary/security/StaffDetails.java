@@ -18,8 +18,6 @@ public class StaffDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // SHOW_ACCOUNT, WITHDRAW_MONEY, SEND_MONEY
-        // ROLE_ADMIN, ROLE_USER - это роли
         return Collections.singletonList(new SimpleGrantedAuthority(staff.getRole()));
     }
 
@@ -53,7 +51,7 @@ public class StaffDetails implements UserDetails {
         return true;
     }
 
-    // Нужно, чтобы получать данные аутентифицированного пользователя
+
     public Staff getStaff() {
         return this.staff;
     }

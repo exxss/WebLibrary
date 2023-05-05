@@ -17,16 +17,11 @@ public class HelloController {
         this.adminService = adminService;
     }
 
-//    @GetMapping("/hello")
-//    public String currentUserNameSimple(Model model, @PathVariable int id) {
-//        model.addAttribute("staff", adminService.findOne(id));
-//        return "hello";
-//    }
     @GetMapping("/hello")
     public String hello(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
        StaffDetails staffDetails = (StaffDetails) authentication.getPrincipal();
-       model.addAttribute("fullName",staffDetails.getStaff().getFullName());
+       model.addAttribute("fullNam4e",staffDetails.getStaff().getFullName());
        return "hello";
     }
 }
